@@ -3,22 +3,25 @@ import java.util.*;
 public abstract class Animal {
 
     public int sat_max = 10;
-    public enum species {CRABE, MEDUSE, MOUETTE, CHEVREUIL, LOUP, HERISSON,
-        SERPENT, FAUCON, REQUIN, TURTLE};
+    public enum species {CRAB, JELLY_FISH, SEAGULL, DEER, WOLVE, HEDGEHOG,
+        SNAKE, FALCON, SHARK, TURTLE};
     public enum sexes {M, F};
-    public enum grounds {WATER, SAND, };
+    public enum grounds {WATER, SAND, PLAIN, FOREST};
 
-    private int satiety;
-    private int bites;
-    private List<species> predators;
-    private List<species> prews;
-    private int voracity;
-    private sexes sex;
-    private int speed;
-    private int camouflage;
+    protected int satiety;
+    protected int bites;
+    protected species specie;
+    protected List<species> predators;
+    protected List<species> prews;
+    protected List<grounds> ground;
+    protected int voracity;
+    protected sexes sex;
+    protected int speed;
+    protected int camouflage;
+    protected int calories;
 
 
-    Random rand = new Random();
+    private Random rand = new Random();
 
     public Animal() {
         this.satiety = rand.nextInt(sat_max-1)+1;
@@ -27,6 +30,11 @@ public abstract class Animal {
 
         if (this.satiety %2 == 0){this.sex = sexes.M;}
         else{this.sex = sexes.F;}
+
+        this.predators = new ArrayList<species>();
+        this.prews = new ArrayList<species>();
+        this.ground = new ArrayList<grounds>();
+
     }
 
 
