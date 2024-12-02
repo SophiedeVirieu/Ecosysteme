@@ -7,13 +7,10 @@ public class Simulation {
      */
     private LinkedList<Insect> animals;
 
-    /**
-     * number of rounds of the simulation
-     */
+
     private int nbRounds;
-    /**
-     * class variable to generate random numbers
-     */
+    public int healing;
+
     public static Random rand = new Random();
 
     /**
