@@ -1,69 +1,86 @@
-import java.util.*;
+import java.util.Random;
+import java.util.Scanner;
 
-/** simulation of a simplified ecosystem */
+
 public class Simulation {
-    /**
-     * animals list of the ecosystem
-     */
-    private LinkedList<Animal> animals;
 
-
-    private int nbRounds;
-    public int healing;
-
+    private int end;
+    private Animal[] animals;
+    private int[] sizewl;
+    //private terrain board;
     public static Random rand = new Random();
-
-    /**
-     * constructor : initialisation of the simulation
-     *
-     * @param nbAnimals number of insects in the simulation
-     * @param rounds    number of rounds of the simulation
-     * @param xMax      abscissa max of the zone
-     * @param yMax      ordinate max of the zone
-     */
-    public Simulation(int nbAnimals, int rounds, int xMax, int yMax) {
-        nbRounds = rounds;
-        // create the collection containing the insects 
-        animals = new LinkedList<Animal>();
-
-
-
-
+    public void turn_simulation(){}
+    public void ending(){}
+    public Simulation(int[] size, int[] animal_numbers) throws BadGroundException {
+        end = 0;
+        init_terrain(size);
+        init_animals(animal_numbers);
     }
+    private void init_terrain(int[] size){
+        sizewl = new int[2];
+        sizewl[0]=size[0];
+        sizewl[1]=size[1];
+    };
+    private void init_animals(int[] animal_numbers) throws BadGroundException {
+        int c = 0; // c holds the total number of animals to create
+        for (int i = 0; i < animal_numbers.length; i++){c = c + animal_numbers[i];}
 
-    /**
-     * simulation of the ecosystem
-     */
-    public void simulate() {
-        // number of rounds of the simulation 
-        for (int i = 0; i < nbRounds; i++) {
-            simulateARound();
-            System.out.println(animals);
+        animals = new Animal[c];
+        int n = 0; //Index of each animal type
+        for (int i = 0; i < animal_numbers.length; i++){
+            for (int j = 0; j < animal_numbers[i]; j++){
+                switch (i){
+                    case 0:
+                        animals[n+j] = new Crab(rand.nextInt(sizewl[0]), rand.nextInt(sizewl[1]));
+                    case 1:
+                        animals[n+j] = new Deer(rand.nextInt(sizewl[0]), rand.nextInt(sizewl[1]));
+                    case 2:
+                        animals[n+j] = new Falcon(rand.nextInt(sizewl[0]), rand.nextInt(sizewl[1]));
+                    case 3:
+                        animals[n+j] = new Hedgehog(rand.nextInt(sizewl[0]), rand.nextInt(sizewl[1]));
+                    case 4:
+                        animals[n+j] = new JellyFish(rand.nextInt(sizewl[0]), rand.nextInt(sizewl[1]));
+                    case 5:
+                        animals[n+j] = new Seagull(rand.nextInt(sizewl[0]), rand.nextInt(sizewl[1]));
+                    case 6:
+                        animals[n+j] = new Snake(rand.nextInt(sizewl[0]), rand.nextInt(sizewl[1]));
+                    case 7:
+                        animals[n+j] = new Turtle(rand.nextInt(sizewl[0]), rand.nextInt(sizewl[1]));
+                    case 8:
+                        animals[n+j] = new Wolf(rand.nextInt(sizewl[0]), rand.nextInt(sizewl[1]));
+                }
+            }
+            n += animal_numbers[i]; // Next index
         }
     }
 
-    /**
-     * A round of simulation
-     */
-    public void simulateARound() {
-        // browse the list of insects
-        // since version 5.0 : possibility to use an iterator :
-        //   for (Insect animal : animals)
-        for (int j = 0; j < animals.size(); j++) {
-            // before version Java 5.0
-            // Insect animal = (Insect)animals.get(j);
+    public static void main(String[] args) throws BadGroundException {
+        Scanner scan = new Scanner(System.in);
+        int[] size = new int[2];
+        System.out.println("Enter the board width");
+        size[0] = Integer.parseInt(scan.nextLine());
+        System.out.println("Enter the board height");
+        size[1] = Integer.parseInt(scan.nextLine());
 
-            // after version Java 5.0
-            Animal animal = animals.get(j);
-
-            // feed the animal if needed
-            //animal.eat();
+        System.out.println("Enter the number of animals with this syntax : ");
+        System.out.println("Crab,Deer,Falcon,Hedgehog,JellyFish,Seagull,Snake,Turtle,Wolf");
+        String s = scan.nextLine();
+        String[] result = s.split("[,]");
+        int[] animal_numbers = new int[result.length];
+        try{
+            for (int i = 0; i < result.length; i++){
+                int x = Integer.parseInt(String.valueOf(result[i]));
+                animal_numbers[i] = x;
+            }
         }
-    }
+        catch(Exception e){
+            System.out.println("Please enter the correct data: ");
+            System.out.println("Crab,Deer,Falcon,Hedgehog,JellyFish,Seagull,Snake,Turtle,Wolf");
+        }
 
-    public static void main (String args[]){
-        Simulation simu = new Simulation(4, 10, 100, 100);
-        simu.simulate();
-    }
+        Simulation sim = new Simulation(size, animal_numbers);
 
+        while(sim.end == 0){sim.turn_simulation();}
+        sim.ending();
+    }
 }
