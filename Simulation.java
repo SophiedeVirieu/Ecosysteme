@@ -25,28 +25,11 @@ public class Simulation {
     public Simulation(int nbAnimals, int rounds, int xMax, int yMax) {
         nbRounds = rounds;
         // create the collection containing the insects 
-        animals = new LinkedList<Insect>();
+        animals = new LinkedList<Animal>();
 
 
-        // initialisation of n Animals 
-        for (int i = 0; i < nbAnimals; i++) {
-            // choose type of animal 
-            int type = rand.nextInt(2);
-            // initial position of the animal 
-            int x = rand.nextInt(xMax);
-            int y = rand.nextInt(yMax);
-            // creation of the inset 
-            switch (type) {
-                case 0: //Ant
-                    animals.add(new Ant(x, y));
-                    break;
-                case 1:
-                    animals.add(new Cicada(x, y));
-                    break;
-                default:
-                    System.err.println("Type of animal not provided");
-            }
-        }
+
+
     }
 
     /**
@@ -72,10 +55,10 @@ public class Simulation {
             // Insect animal = (Insect)animals.get(j);
 
             // after version Java 5.0
-            Insect animal = animals.get(j);
+            Animal animal = animals.get(j);
 
             // feed the animal if needed
-            animal.eat();
+            //animal.eat();
         }
     }
 
