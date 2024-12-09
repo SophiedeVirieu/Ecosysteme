@@ -11,26 +11,28 @@ public abstract class Biomass {
     protected List<species> predators;
     protected List<grounds> ground;
     protected int calories;
+    protected int bites;
     protected int x;
     protected int y;
 
-    public Biomass(int x, int y) {
+    public Biomass(int x, int y) throws BadGroundException {
         this.x = x;
         this.y = y;
+        this.bites = 0;
         this.predators = new ArrayList<species>();
         this.ground = new ArrayList<grounds>();
     }
 
-    public void setY(int y) {
-        this.y = y;
-        //faire un try - catch avec une exception de ma conception
+    public void setY(int y) throws BadGroundException {
+        System.out.println("Le setter a bien été appelé");
+        // A CORRIGER
+        // si x et y sont dans un terrain de this.ground :
+        if (this.x+y<10) {
+            this.y = y;
+        }
+        else {
+            throw new BadGroundException();
+        }
     }
 
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    protected void is_eaten(int strenght){
-
-    }
 }

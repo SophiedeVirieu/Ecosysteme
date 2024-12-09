@@ -7,7 +7,6 @@ public abstract class Animal extends Biomass {
 
     public enum sexes {M, F};
     protected int satiety;
-    protected int bites;
     protected species specie;
     protected List<species> prews;
     protected List<TerrainResources.food> myFood;
@@ -17,12 +16,11 @@ public abstract class Animal extends Biomass {
     protected int camouflage;
 
 
-    final private Random rand = new Random();
+    private final Random rand = new Random();
 
-    public Animal(int x, int y) {
+    public Animal(int x, int y) throws BadGroundException {
         super(x, y);
         this.satiety = rand.nextInt(sat_max-1)+1;
-        this.bites = 0;
         this.voracity = rand.nextInt(10);
 
         if (this.satiety %2 == 0){this.sex = sexes.M;}
@@ -33,10 +31,42 @@ public abstract class Animal extends Biomass {
     }
 
     protected void eat(Biomass food) {
-        //if (food in this.myFood)
-        this.satiety = min(sat_max, this.satiety + food.calories);
-        food.is_eaten(2); //Faire un Override pour les espèces plus puissantes
+        /* Supposes that this is one of the food's predators */
+
+        food.bites += 2;
+        if (food.bites>3){ //Simulation is in charge of killing it
+            this.satiety = min(sat_max, this.satiety + food.calories);
+        }
+
     }
 
+    protected void move(int x_aim, int y_aim) {
+        //Calculation of the vector
+        int x_v = x_aim - this.x;
+        int y_v = y_aim - this.y;
+        double norm = Math.sqrt(x_v*x_v + y_v*y_v);
 
+        //unit vector * speed
+        x_v = (int)(x_v*this.speed / norm);
+        y_v = (int)(y_v*this.speed / norm);
+
+        //Move to the arrival case
+        this.x += x_v;
+        this.y += y_v;
+    }
+
+    // to call only if the animal is female
+    protected abstract void reproduce() throws BadGroundException;
+
+    protected void detect_food(){
+        //
+    }
+
+    protected void detect_predator(){
+        //
+    }
+
+    protected void migrate(){
+
+    }
 }
