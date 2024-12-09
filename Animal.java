@@ -10,14 +10,14 @@ public abstract class Animal extends Biomass {
     protected int bites;
     protected species specie;
     protected List<species> prews;
-    protected List<Simulation.food> myFood;
+    protected List<TerrainResources.food> myFood;
     protected int voracity;
     protected sexes sex;
     protected int speed;
     protected int camouflage;
 
 
-    private Random rand = new Random();
+    final private Random rand = new Random();
 
     public Animal(int x, int y) {
         super(x, y);
@@ -29,19 +29,14 @@ public abstract class Animal extends Biomass {
         else{this.sex = sexes.F;}
 
         this.prews = new ArrayList<species>();
-        this.myFood = new ArrayList<Simulation.food>();
+        this.myFood = new ArrayList<TerrainResources.food>();
     }
 
     protected void eat(Biomass food) {
+        //if (food in this.myFood)
         this.satiety = min(sat_max, this.satiety + food.calories);
+        food.is_eaten(2); //Faire un Override pour les espèces plus puissantes
     }
 
-    public void setY(int y) {
-        this.y = y;
-        //faire un try - catch avec une exception de ma conception
-    }
 
-    public void setX(int x) {
-        this.x = x;
-    }
 }

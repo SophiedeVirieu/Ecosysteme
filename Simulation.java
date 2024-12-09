@@ -6,7 +6,6 @@ public class Simulation {
      * animals list of the ecosystem
      */
     private LinkedList<Animal> animals;
-    public enum food {FISH, ALGAE, GRASS, BERRIES};
 
 
     private int nbRounds;
