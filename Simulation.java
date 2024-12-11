@@ -23,7 +23,7 @@ public class Simulation {
     };
     private void init_animals(int[] animal_numbers) throws BadGroundException {
         int c = 0; // c holds the total number of animals to create
-        for (int i = 0; i < animal_numbers.length; i++){c = c + animal_numbers[i];}
+        for (int animalNumber : animal_numbers) {c = c + animalNumber;}
 
         animals = new Animal[c];
         int n = 0; //Index of each animal type
