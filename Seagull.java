@@ -1,6 +1,6 @@
 public class Seagull extends Animal{
 
-    public Seagull(int x, int y) throws BadGroundException {
+    public Seagull(int x, int y) {
         super(x, y);
         this.specie = species.SEAGULL;
 
@@ -20,7 +20,7 @@ public class Seagull extends Animal{
     }
 
     @Override
-    protected void reproduce() throws BadGroundException{
+    protected void reproduce() {
         new Seagull(this.x+1, this.y);
     };
 }

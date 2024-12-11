@@ -1,6 +1,6 @@
 public class Snake extends Animal {
 
-    public Snake(int x, int y) throws BadGroundException {
+    public Snake(int x, int y) {
         super(x, y);
         this.specie = species.SNAKE;
 
@@ -16,7 +16,7 @@ public class Snake extends Animal {
     }
 
     @Override
-    protected void reproduce() throws BadGroundException{
+    protected void reproduce() {
         new Turtle(this.x+1, this.y);
     };
 }

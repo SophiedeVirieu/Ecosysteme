@@ -1,6 +1,6 @@
 public class Wolf extends Animal {
 
-    public Wolf(int x, int y) throws BadGroundException {
+    public Wolf(int x, int y) {
         super(x, y);
         this.specie = species.WOLF;
 
@@ -14,7 +14,7 @@ public class Wolf extends Animal {
     }
 
     @Override
-    protected void reproduce() throws BadGroundException{
+    protected void reproduce() {
         new Wolf(this.x+1, this.y);
     };
 

@@ -15,7 +15,7 @@ public abstract class Biomass {
     protected int x;
     protected int y;
 
-    public Biomass(int x, int y) throws BadGroundException {
+    public Biomass(int x, int y){
         this.x = x;
         this.y = y;
         this.bites = 0;
@@ -23,15 +23,17 @@ public abstract class Biomass {
         this.ground = new ArrayList<grounds>();
     }
 
-    public void setY(int y) throws BadGroundException {
-        System.out.println("Le setter a bien été appelé");
+    public void setY(int y){
+        System.out.println("Le setter a été appelé");
         // A CORRIGER
         // si x et y sont dans un terrain de this.ground :
-        if (this.x+y<10) {
+        if (this.x+y<5) {
             this.y = y;
         }
         else {
-            throw new BadGroundException();
+            //chercher la zone autorisée la plus proche
+            //s'y positionner
+
         }
     }
 

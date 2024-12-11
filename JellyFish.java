@@ -1,6 +1,6 @@
 public class JellyFish extends Animal {
 
-    public JellyFish(int x, int y) throws BadGroundException {
+    public JellyFish(int x, int y) {
         super(x, y);
         this.specie = species.JELLY_FISH;
 
@@ -14,7 +14,7 @@ public class JellyFish extends Animal {
     }
 
     @Override
-    protected void reproduce() throws BadGroundException{
+    protected void reproduce() {
         new JellyFish(this.x+1, this.y);
     };
 }

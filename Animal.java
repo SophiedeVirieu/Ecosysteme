@@ -18,7 +18,7 @@ public abstract class Animal extends Biomass {
 
     private final Random rand = new Random();
 
-    public Animal(int x, int y) throws BadGroundException {
+    public Animal(int x, int y) {
         super(x, y);
         this.satiety = rand.nextInt(sat_max-1)+1;
         this.voracity = rand.nextInt(10);
@@ -56,7 +56,7 @@ public abstract class Animal extends Biomass {
     }
 
     // to call only if the animal is female
-    protected abstract void reproduce() throws BadGroundException;
+    protected abstract void reproduce();
 
     protected void detect_food(){
         //
