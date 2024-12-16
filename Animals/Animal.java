@@ -1,3 +1,7 @@
+package Animals;
+import Resources.TerrainResources;
+import base.Biomass;
+
 import java.util.*;
 import static java.lang.Integer.min;
 
@@ -7,8 +11,8 @@ public abstract class Animal extends Biomass {
 
     public enum sexes {M, F};
     protected int satiety;
-    protected species specie;
-    protected List<species> prews;
+    protected Biomass.species specie;
+    protected List<Biomass.species> prews;
     protected List<TerrainResources.food> myFood;
     protected int voracity;
     protected sexes sex;
@@ -16,17 +20,16 @@ public abstract class Animal extends Biomass {
     protected int camouflage;
 
 
-    private final Random rand = new Random();
-
     public Animal(int x, int y) {
         super(x, y);
+        Random rand = new Random();
         this.satiety = rand.nextInt(sat_max-1)+1;
         this.voracity = rand.nextInt(10);
 
         if (this.satiety %2 == 0){this.sex = sexes.M;}
         else{this.sex = sexes.F;}
 
-        this.prews = new ArrayList<species>();
+        this.prews = new ArrayList<Biomass.species>();
         this.myFood = new ArrayList<TerrainResources.food>();
     }
 

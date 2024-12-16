@@ -1,3 +1,5 @@
+package Animals;
+
 public class Wolf extends Animal {
 
     public Wolf(int x, int y) {

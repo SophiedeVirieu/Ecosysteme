@@ -1,23 +1,24 @@
-public class Hedgehog extends Animal{
+package Animals;
 
-    public Hedgehog(int x, int y) {
+public class Deer extends Animal {
+
+    public Deer(int x, int y) {
         super(x, y);
-        this.specie = species.HEDGEHOG;
+        this.specie = species.DEER;
 
-        this.predators.add(species.FALCON);
         this.predators.add(species.WOLF);
         this.myFood.add(TerrainResources.food.GRASS);
         this.myFood.add(TerrainResources.food.BERRIES);
         this.ground.add(grounds.FOREST);
         this.ground.add(grounds.PLAIN);
 
-        this.speed = 1;
+        this.speed = 4;
         this.camouflage = 2;
-        this.calories = 5;
+        this.calories = 8;
     }
 
     @Override
     protected void reproduce() {
-        new Hedgehog(this.x+1, this.y);
+        new Deer(this.x+1, this.y);
     };
 }

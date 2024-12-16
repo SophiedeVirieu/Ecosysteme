@@ -1,3 +1,5 @@
+package base;
+
 public class BadGroundException extends Exception{
 
     public BadGroundException(){

@@ -1,3 +1,5 @@
+package Animals;
+
 public class JellyFish extends Animal {
 
     public JellyFish(int x, int y) {

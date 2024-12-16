@@ -1,3 +1,4 @@
+import base.Terrain2D;
 import javax.swing.*;
 
 public class Main {

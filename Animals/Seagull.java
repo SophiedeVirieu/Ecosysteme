@@ -1,4 +1,6 @@
-public class Seagull extends Animal{
+package Animals;
+
+public class Seagull extends Animal {
 
     public Seagull(int x, int y) {
         super(x, y);

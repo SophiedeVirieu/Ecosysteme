@@ -1,4 +1,7 @@
-public class Crab extends Animal{
+package Animals;
+import Resources.TerrainResources;
+
+public class Crab extends Animal {
 
     public Crab(int x, int y) {
         super(x, y);

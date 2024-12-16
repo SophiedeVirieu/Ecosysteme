@@ -1,3 +1,5 @@
+package Animals;
+
 public class Snake extends Animal {
 
     public Snake(int x, int y) {

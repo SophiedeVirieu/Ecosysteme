@@ -1,3 +1,5 @@
+package base;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,8 +12,8 @@ public abstract class Biomass {
 
     protected List<species> predators;
     protected List<grounds> ground;
-    protected int calories;
-    protected int bites;
+    public int calories;
+    public int bites;
     protected int x;
     protected int y;
 
