@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 package base;
+import Resources.Algae;
+import Resources.Berry;
+import Resources.Fish;
+import Resources.Herb;
+=======
+package Ecosysteme;
+>>>>>>> 732e57ce0a1230c82fd11656bf410ae1b2109101
 
 import Ecosysteme.*;
 import javax.swing.*;
@@ -7,8 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.*;
+<<<<<<< HEAD
 
-import java.util.*;
+=======
+>>>>>>> 732e57ce0a1230c82fd11656bf410ae1b2109101
 
 public class Terrain2D extends JPanel {
     private final int[][] heights;
@@ -105,7 +115,10 @@ public class Terrain2D extends JPanel {
                     g2d.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
                     if (new Random().nextDouble() < 0.05) {
                         new Algae(x,y);
+<<<<<<< HEAD
+=======
                         list_Algae.add(List.of(x, y));
+>>>>>>> 732e57ce0a1230c82fd11656bf410ae1b2109101
                         g2d.setColor(new Color(13, 66, 28)); // Bleu cyan
                         int centerX = x * cellSize + cellSize / 4; // Position horizontale du cercle
                         int centerY = y * cellSize + cellSize / 4; // Position verticale du cercle

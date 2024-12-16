@@ -1,6 +1,9 @@
 package base;
+import Resources.Algae;
+import Resources.Berry;
+import Resources.Fish;
+import Resources.Herb;
 
-import Ecosysteme.*;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -8,23 +11,14 @@ import java.util.List;
 import java.util.Random;
 import java.util.*;
 
-import java.util.*;
 
 public class Terrain2D extends JPanel {
     private final int[][] heights;
     private final int cellSize = 10; // Taille de chaque "case" du terrain
-    private final List<List<Integer>> list_Fish;
-    private final List<List<Integer>> list_Algae;
-    private final List<List<Integer>> list_Herb;
-    private final List<List<Integer>> list_Berry;
 
     public Terrain2D(int width, int height) {
         heights = generateTerrain(width, height);
         smoothTerrain(heights, 5); // Appliquer un lissage sur x itérations
-        list_Fish = new ArrayList<>();
-        list_Algae = new ArrayList<>();
-        list_Herb = new ArrayList<>();
-        list_Berry = new ArrayList<>();
     }
 
     // Génération d'un terrain 2D avec des hauteurs aléatoires
@@ -91,7 +85,6 @@ public class Terrain2D extends JPanel {
                     g2d.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
                     if (new Random().nextDouble() < 0.05) {
                         new Fish(x,y);
-                        list_Fish.add(List.of(x, y));
                         g2d.setColor(new Color(0, 170, 180)); // Bleu cyan
                         int centerX = x * cellSize + cellSize / 4; // Position horizontale du cercle
                         int centerY = y * cellSize + cellSize / 4; // Position verticale du cercle
@@ -105,7 +98,6 @@ public class Terrain2D extends JPanel {
                     g2d.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
                     if (new Random().nextDouble() < 0.05) {
                         new Algae(x,y);
-                        list_Algae.add(List.of(x, y));
                         g2d.setColor(new Color(13, 66, 28)); // Bleu cyan
                         int centerX = x * cellSize + cellSize / 4; // Position horizontale du cercle
                         int centerY = y * cellSize + cellSize / 4; // Position verticale du cercle
@@ -118,7 +110,6 @@ public class Terrain2D extends JPanel {
                     g2d.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
                     if (new Random().nextDouble() < 0.05) {
                         new Herb(x,y);
-                        list_Herb.add(List.of(x, y));
                         g2d.setColor(new Color(111, 125, 29)); // Bleu cyan
                         int centerX = x * cellSize + cellSize / 4; // Position horizontale du cercle
                         int centerY = y * cellSize + cellSize / 4; // Position verticale du cercle
@@ -131,7 +122,6 @@ public class Terrain2D extends JPanel {
                     g2d.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
                     if (new Random().nextDouble() < 0.05) {
                         new Berry(x,y);
-                        list_Berry.add(List.of(x, y));
                         g2d.setColor(new Color(178, 34, 34)); // Rouge foncé
                         int centerX = x * cellSize + cellSize / 4; // Position horizontale du cercle
                         int centerY = y * cellSize + cellSize / 4; // Position verticale du cercle
@@ -142,51 +132,6 @@ public class Terrain2D extends JPanel {
             }
         }
     }
-
-
-    public List<List<Integer>> Neighbours(int x, int y, int sense, List<List<Integer>> Ressources) {
-        List<List<Integer>> Sense_Zone = new ArrayList<>();
-        for (int i = x-sense; i < x+sense+1; i++) {
-            for (int j = y-sense; j < y+sense+1; j++) {
-                if (Ressources.contains(List.of(i, j))) {
-                    Sense_Zone.add(List.of(i, j));
-                }
-            }
-        }
-        return Sense_Zone;
-    }
-
-
-    public Biomass.grounds getTerrain(int x, int y) {
-        double height = heights[x][y];
-        if (height < 123){
-            return Biomass.grounds.WATER;
-        } else if (height < 125) {
-            return Biomass.grounds.SAND;
-        } else if (height < 129) {
-            return Biomass.grounds.PLAIN;
-        } else {
-            return Biomass.grounds.FOREST;
-        }
-    }
-
-
-    public List<List<Integer>> get_Fish(int x, int y, int sense) {
-        return Neighbours(x, y, sense, list_Fish);
-    }
-
-    public List<List<Integer>> get_Algae(int x, int y, int sense) {
-        return Neighbours(x,y,sense, list_Algae);
-    }
-
-    public List<List<Integer>> get_Herb(int x, int y, int sense) {
-        return Neighbours(x,y,sense, list_Herb);
-    }
-
-    public List<List<Integer>> get_Berry(int x, int y, int sense) {
-        return Neighbours(x,y,sense, list_Berry);
-    }
-
 
 
     public static void main(String[] args) {
