@@ -1,5 +1,4 @@
 package Resources;
-import Resources.TerrainResources;
 
 public class Algae extends TerrainResources {
     public Algae(int x, int y) {

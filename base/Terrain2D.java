@@ -1,14 +1,15 @@
 package base;
 
-import Ecosysteme.*;
+import Resources.Algae;
+import Resources.Berry;
+import Resources.Fish;
+import Resources.Herb;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.*;
-
-import java.util.*;
 
 public class Terrain2D extends JPanel {
     private final int[][] heights;
@@ -200,19 +201,6 @@ public class Terrain2D extends JPanel {
         frame.setSize(width * 10, height * 10);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-    }
-
-    public Biomass.grounds getTerrain(int x, int y) {
-        double height = heights[x][y];
-        if (height < 123){
-            return Biomass.grounds.WATER;
-        } else if (height < 125) {
-            return Biomass.grounds.SAND;
-        } else if (height < 129) {
-            return Biomass.grounds.PLAIN;
-        } else {
-            return Biomass.grounds.FOREST;
-        }
     }
 
     public List<List<Integer>> get_Fish() {
