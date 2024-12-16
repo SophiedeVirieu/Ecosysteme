@@ -1,7 +1,7 @@
 package Resources;
 
-public class Fish extends Terrain_ressources {
+public class Fish extends TerrainResources {
     public Fish(int x, int y) {
-        super(true, x,y,0,3,4);
+        super(x,y, true,0,3,4);
     }
 }

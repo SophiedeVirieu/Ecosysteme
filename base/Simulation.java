@@ -1,7 +1,5 @@
 package base;
-
 import Animals.*;
-
 import java.util.Random;
 import java.util.Scanner;
 

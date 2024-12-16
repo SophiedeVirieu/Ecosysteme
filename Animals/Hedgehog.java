@@ -1,5 +1,7 @@
 package Animals;
 
+import Resources.TerrainResources;
+
 public class Hedgehog extends Animal {
 
     public Hedgehog(int x, int y) {

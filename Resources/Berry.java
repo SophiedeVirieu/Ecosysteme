@@ -1,7 +1,7 @@
 package Resources;
 
-public class Berry extends Terrain_ressources {
+public class Berry extends TerrainResources {
     public Berry(int x, int y) {
-        super(true, x,y,0,2,3);
+        super(x,y, true, 0,2,3);
     }
 }

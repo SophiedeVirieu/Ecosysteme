@@ -62,7 +62,7 @@ public abstract class Animal extends Biomass {
     protected abstract void reproduce();
 
     protected void detect_food(){
-        //
+
     }
 
     protected void detect_predator(){

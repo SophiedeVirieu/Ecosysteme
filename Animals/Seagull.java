@@ -1,4 +1,5 @@
 package Animals;
+import Resources.TerrainResources;
 
 public class Seagull extends Animal {
 

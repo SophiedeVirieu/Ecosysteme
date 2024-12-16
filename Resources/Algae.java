@@ -1,7 +1,8 @@
 package Resources;
+import Resources.TerrainResources;
 
-public class Algae extends Terrain_ressources {
+public class Algae extends TerrainResources {
     public Algae(int x, int y) {
-        super(true, x,y,0,2,2);
+        super(x,y, true, 0,2,2);
     }
 }
