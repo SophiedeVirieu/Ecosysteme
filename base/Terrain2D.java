@@ -158,7 +158,7 @@ public class Terrain2D extends JPanel {
     }
 
 
-    public Biomass.grounds getTerrain(int x, int y) {
+    public static Biomass.grounds getTerrain(int x, int y) {
         double height = heights[x][y];
         if (height < 123){
             return Biomass.grounds.WATER;

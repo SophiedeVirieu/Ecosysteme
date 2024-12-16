@@ -1,6 +1,7 @@
 package Animals;
 import Resources.TerrainResources;
 import base.Biomass;
+import base.Terrain2D;
 
 import java.util.*;
 import static java.lang.Integer.min;
@@ -44,6 +45,11 @@ public abstract class Animal extends Biomass {
     }
 
     protected void move(int x_aim, int y_aim) {
+        if (!this.ground.contains(Terrain2D.getTerrain(x_aim, y_aim))){
+            // forbidden terrain
+            return;
+        }
+
         //Calculation of the vector
         int x_v = x_aim - this.x;
         int y_v = y_aim - this.y;
@@ -70,6 +76,18 @@ public abstract class Animal extends Biomass {
     }
 
     protected void migrate(){
+
+    }
+
+    protected void flee(){
+
+    }
+
+    protected void attack(){
+
+    }
+
+    protected void decide(){
 
     }
 }
