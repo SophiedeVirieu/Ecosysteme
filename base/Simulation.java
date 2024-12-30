@@ -2,31 +2,63 @@ package base;
 import Animals.*;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.ArrayList;
+
 
 
 public class Simulation {
-
+    public enum Decisions {REPRODUCE, EAT, FLEE, ATTACK, MIGRATE}
     private int end;
     private Animal[] animals;
     private int[] sizewl;
     //private terrain board;
     public static Random rand = new Random();
-    public void turn_simulation(){}
+    public void turn_simulation(){
+        ArrayList<Animal> flee;
+        ArrayList<Animal> attack;
+        ArrayList<Animal> reproduce;
+        ArrayList<Animal> eat;
+        ArrayList<Animal> other;
+        for (int i = 0; i < animals.length; i++){
+            switch (animals[i].decide()){
+                case Decisions.FLEE:
+                    flee.add(animals[i]);
+                    break;
+                case Decisions.ATTACK:
+                    attack.add(animals[i]);
+                    break;
+                case Decisions.REPRODUCE:
+                    reproduce.add(animals[i]);
+                    break;
+                case Decisions.MIGRATE:
+                    reproduce.add{animals[i]);
+                    break;
+                    case Decisions.EAT:
+                        eat.add(animals[i]);
+                        break;
+
+
+        }
+        for (int i = 0; i < animals.length; i++){
+
+        }
+    }
     public void ending(){}
     public Simulation(int[] size, int[] animal_numbers) throws BadGroundException {
         end = 0;
         init_terrain(size);
         init_animals(animal_numbers);
     }
+
     private void init_terrain(int[] size){
         sizewl = new int[2];
         sizewl[0]=size[0];
         sizewl[1]=size[1];
-    };
+    }
+
     private void init_animals(int[] animal_numbers) throws BadGroundException {
         int c = 0; // c holds the total number of animals to create
         for (int animalNumber : animal_numbers) {c = c + animalNumber;}
-
         animals = new Animal[c];
         int n = 0; //Index of each animal type
         for (int i = 0; i < animal_numbers.length; i++){
