@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Terrain2D extends JPanel {
-    private final int[][] heights;
+    private static final int[][] heights;
     private final int cellSize = 10; // Taille de chaque "case" du terrain
     private final List<List<Integer>> list_Fish;
     private final List<List<Integer>> list_Algae;
@@ -203,19 +203,19 @@ public class Terrain2D extends JPanel {
         frame.setVisible(true);
     }
 
-    public List<List<Integer>> get_Fish() {
+    public static List<List<Integer>> get_Fish() {
         return list_Fish;
     }
 
-    public List<List<Integer>> get_Algae() {
+    public static List<List<Integer>> get_Algae() {
         return list_Algae;
     }
 
-    public List<List<Integer>> get_Herb() {
+    public static List<List<Integer>> get_Grass() {
         return list_Herb;
     }
 
-    public List<List<Integer>> get_Berry() {
+    public static List<List<Integer>> get_Berry() {
         return list_Berry;
     }
 

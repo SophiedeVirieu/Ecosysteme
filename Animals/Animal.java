@@ -68,6 +68,24 @@ public abstract class Animal extends Biomass {
     protected abstract void reproduce();
 
     protected void detect_food(){
+        /* Search the nearest food */
+
+        List<List<Integer>> aim = new ArrayList<>();
+
+        if (myFood.contains(TerrainResources.food.BERRIES)){
+            aim.addAll(Terrain2D.get_Berry());
+        }
+        if (myFood.contains(TerrainResources.food.FISH)){
+            aim.addAll(Terrain2D.get_Fish());
+        }
+        if (myFood.contains(TerrainResources.food.ALGAE)){
+            aim.addAll(Terrain2D.get_Algae());
+        }
+        if (myFood.contains(TerrainResources.food.GRASS)){
+            aim.addAll(Terrain2D.get_Grass());
+        }
+
+        //distances ?
 
     }
 
@@ -88,6 +106,7 @@ public abstract class Animal extends Biomass {
     }
 
     protected void decide(){
+        /* criteria : what is the nearest */
 
     }
 }
