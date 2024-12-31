@@ -2,6 +2,7 @@ package Animals;
 import Resources.TerrainResources;
 import base.Biomass;
 import base.Terrain2D;
+import base.Simulation;
 
 import java.util.*;
 import static java.lang.Integer.min;
@@ -13,7 +14,7 @@ public abstract class Animal extends Biomass {
     public enum sexes {M, F};
     protected int satiety;
     protected Biomass.species specie;
-    protected List<Biomass.species> prews;
+    protected List<Biomass.species> prews; //Tu voulais dire prey ? (proies ?)
     protected List<TerrainResources.food> myFood;
     protected int voracity;
     protected sexes sex;
@@ -34,7 +35,7 @@ public abstract class Animal extends Biomass {
         this.myFood = new ArrayList<TerrainResources.food>();
     }
 
-    protected void eat(Biomass food) {
+    public void eat(Biomass food) {
         /* Supposes that this is one of the food's predators */
 
         food.bites += 2;
@@ -65,7 +66,7 @@ public abstract class Animal extends Biomass {
     }
 
     // to call only if the animal is female
-    protected abstract void reproduce();
+    public abstract void reproduce();
 
     protected void detect_food(){
         /* Search the nearest food */
@@ -89,24 +90,24 @@ public abstract class Animal extends Biomass {
 
     }
 
-    protected void detect_predator(){
+    public void detect_predator(){
         //
     }
 
-    protected void migrate(){
+    public void migrate(){
 
     }
 
-    protected void flee(){
+    public void flee(){
 
     }
 
-    protected void attack(){
+    public void attack(){
 
     }
 
-    protected void decide(){
+    public Simulation.Decisions decide(){
         /* criteria : what is the nearest */
-
+        return Simulation.Decisions.FLEE; //EXEMPLE !
     }
 }
