@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Simulation {
     public enum Decisions {REPRODUCE, EAT, FLEE, ATTACK, MIGRATE} //Possible behaviors for the animals
     private int end; // =1 when the simulation is ended, =0 when it is still running
-    private Animal[] animals; // List of the animals in the simulation. TODO: Maybe make an Array list to be able to add animals ?
+    private ArrayList<Animal> animals = new ArrayList<Animal>(); // List of the animals in the simulation.
     private int[] sizewl; // Size [width, length] of the game board TODO: Is it useful?
     //private terrain board;
     public static Random rand = new Random();
@@ -27,10 +27,12 @@ public class Simulation {
         while(this.end==0){
             turn_simulation();
         }
+        ending();
+        System.out.println("Simulation ended.");
     }
 
 
-    public void turn_simulation(){
+    public void turn_simulation() {
         /*
         This function simulates a turn : It asks what each animal wants to do, then makes them do it. TODO : Make the turn ending (refreshing data, making some animals die, etc...)
          */
@@ -39,7 +41,7 @@ public class Simulation {
         ArrayList<Animal> reproduce = new ArrayList<Animal>();
         ArrayList<Animal> migrate = new ArrayList<Animal>();
         ArrayList<Animal> eat = new ArrayList<Animal>();
-        for (Animal a : this.animals){ //Ask each animal what it wants to do
+        for (Animal a : this.animals) { //Ask each animal what it wants to do
             switch (a.decide()) {
                 case Decisions.FLEE:
                     flee.add(a);
@@ -58,28 +60,44 @@ public class Simulation {
                     break;
             }
         }
-        for (Animal a : flee){ //Let the animal do what it wanted to do. Will have to be completed when the functions are implemented in Animal.java
+        for (Animal a : flee) { //Let the animal do what it wanted to do. Will have to be completed when the functions are implemented in Animal.java
             a.flee();
         }
-        for (Animal a : attack){
+        for (Animal a : attack) {
             a.attack();
         }
-        for (Animal a : reproduce){
+        for (Animal a : reproduce) {
             a.reproduce();
         }
-        for (Animal a : migrate){
+        for (Animal a : migrate) {
             a.migrate();
         }
-        for (Animal a : eat){ //TODO : HAVE TO LOOK WHAT FOOD TO GIVE TO EAT TO THE ANIMAL based on its coordinates !
+        for (Animal a : eat) { //TODO : HAVE TO LOOK WHAT FOOD TO GIVE TO EAT TO THE ANIMAL based on its coordinates !
             int x = a.x;
             int y = a.y;
 
             /*
-            Here, look for
+            Here, look for the thing the animal eats...
              */
             a.eat();
         }
+        turn_end();
     }
+
+    private void turn_end(){
+        ArrayList<Animal> survivors = new ArrayList<Animal>(); //Is a new array list each turn ?? Normally yes, bc it is a local variable
+        for (int i = 0; i < animals.size(); i++) { //Kill related animals
+            Animal a = animals.get(i);
+            if (a.satiety > 0) {//TODO : Is the satiety stat really equivalent to hp?
+                survivors.add(a);
+            }
+            else{
+                a.kill(); //Does an animal have to do something when killed?
+            }
+        }
+        this.animals = survivors; //Replace the list with the updated list of animals. DOES IT WORK ? SHOULD I COPY THE LIST BC SURVIVORS WILL BE DESTROYED AT END OF FUNTION CALL ?
+    }
+
     public void ending(){}
 
     private void init_terrain(int[] size){
@@ -89,31 +107,28 @@ public class Simulation {
     }
 
     private void init_animals(int[] animal_numbers) throws BadGroundException {
-        int c = 0; // c holds the total number of animals to create
-        for (int animalNumber : animal_numbers) {c = c + animalNumber;}
-        this.animals = new Animal[c];
         int n = 0; //Index of each animal type
         for (int i = 0; i < animal_numbers.length; i++){
             for (int j = 0; j < animal_numbers[i]; j++){
-                switch (i){
+                switch (i){ //Is there a better way to do this ?? Like by putting class references into an array ?
                     case 0:
-                        this.animals[n+j] = new Crab(rand.nextInt(sizewl[0]), rand.nextInt(sizewl[1]));
+                        this.animals.add(new Crab(rand.nextInt(sizewl[0]), rand.nextInt(sizewl[1])));
                     case 1:
-                        this.animals[n+j] = new Deer(rand.nextInt(sizewl[0]), rand.nextInt(sizewl[1]));
+                        this.animals.add(new Deer(rand.nextInt(sizewl[0]), rand.nextInt(sizewl[1])));
                     case 2:
-                        this.animals[n+j] = new Falcon(rand.nextInt(sizewl[0]), rand.nextInt(sizewl[1]));
+                        this.animals.add(new Falcon(rand.nextInt(sizewl[0]), rand.nextInt(sizewl[1])));
                     case 3:
-                        this.animals[n+j] = new Hedgehog(rand.nextInt(sizewl[0]), rand.nextInt(sizewl[1]));
+                        this.animals.add(new Hedgehog(rand.nextInt(sizewl[0]), rand.nextInt(sizewl[1])));
                     case 4:
-                        this.animals[n+j] = new JellyFish(rand.nextInt(sizewl[0]), rand.nextInt(sizewl[1]));
+                        this.animals.add(new JellyFish(rand.nextInt(sizewl[0]), rand.nextInt(sizewl[1])));
                     case 5:
-                        this.animals[n+j] = new Seagull(rand.nextInt(sizewl[0]), rand.nextInt(sizewl[1]));
+                        this.animals.add(new Seagull(rand.nextInt(sizewl[0]), rand.nextInt(sizewl[1])));
                     case 6:
-                        this.animals[n+j] = new Snake(rand.nextInt(sizewl[0]), rand.nextInt(sizewl[1]));
+                        this.animals.add(new Snake(rand.nextInt(sizewl[0]), rand.nextInt(sizewl[1])));
                     case 7:
-                        this.animals[n+j] = new Turtle(rand.nextInt(sizewl[0]), rand.nextInt(sizewl[1]));
+                        this.animals.add(new Turtle(rand.nextInt(sizewl[0]), rand.nextInt(sizewl[1])));
                     case 8:
-                        this.animals[n+j] = new Wolf(rand.nextInt(sizewl[0]), rand.nextInt(sizewl[1]));
+                        this.animals.add(new Wolf(rand.nextInt(sizewl[0]), rand.nextInt(sizewl[1])));
                 }
             }
             n += animal_numbers[i]; // Next index

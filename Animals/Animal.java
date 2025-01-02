@@ -12,7 +12,7 @@ public abstract class Animal extends Biomass {
     public int sat_max = 10;
 
     public enum sexes {M, F};
-    protected int satiety;
+    public int satiety; //J'ai mis en variable publique en l'absence d'un getter
     protected Biomass.species specie;
     protected List<Biomass.species> prews; //Tu voulais dire prey ? (proies ?)
     protected List<TerrainResources.food> myFood;
