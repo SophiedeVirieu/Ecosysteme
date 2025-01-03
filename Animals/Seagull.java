@@ -1,5 +1,6 @@
 package Animals;
 import Resources.TerrainResources;
+import base.Terrain2D;
 
 public class Seagull extends Animal {
 
@@ -7,8 +8,8 @@ public class Seagull extends Animal {
         super(x, y);
         this.specie = species.SEAGULL;
 
-        this.prews.add(species.CRAB);
-        this.prews.add(species.SNAKE);
+        this.preys.add(species.CRAB);
+        this.preys.add(species.SNAKE);
         this.predators.add(species.FALCON);
         this.predators.add(species.SNAKE);
         this.predators.add(species.SHARK);
@@ -23,7 +24,10 @@ public class Seagull extends Animal {
     }
 
     @Override
-    protected void reproduce() {
-        new Seagull(this.x+1, this.y);
-    };
+    public void reproduce() {
+        if (this.ground.contains(Terrain2D.getTerrain(this.x +1, this.y))) {
+            new Seagull(this.x + 1, this.y);
+            super.reproduce();
+        }
+    }
 }

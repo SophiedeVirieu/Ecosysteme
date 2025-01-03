@@ -26,14 +26,11 @@ public abstract class Biomass {
     }
 
     public void setY(int y){
-        System.out.println("Le setter a été appelé");
-        // A CORRIGER
-        // si x et y sont dans un terrain de this.ground :
-        if (this.x+y<5) {
+        if (this.ground.contains(Terrain2D.getTerrain(this.x, this.y))) {
             this.y = y;
         }
         else {
-            //chercher la zone autorisée la plus proche
+            //TODO : chercher la zone autorisée la plus proche
             //s'y positionner
 
         }

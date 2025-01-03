@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Simulation {
     public enum Decisions {REPRODUCE, EAT, FLEE, ATTACK, MIGRATE} //Possible behaviors for the animals
     private int end; // =1 when the simulation is ended, =0 when it is still running
-    private ArrayList<Animal> animals = new ArrayList<Animal>(); // List of the animals in the simulation.
+    public static ArrayList<Animal> animals = new ArrayList<Animal>(); // List of the animals in the simulation.
     private int[] sizewl; // Size [width, length] of the game board TODO: Is it useful?
     //private terrain board;
     public static Random rand = new Random();
@@ -79,7 +79,7 @@ public class Simulation {
             /*
             Here, look for the thing the animal eats...
              */
-            a.eat();
+            a.eat(a.toEat);
         }
         turn_end();
     }
@@ -113,22 +113,31 @@ public class Simulation {
                 switch (i){ //Is there a better way to do this ?? Like by putting class references into an array ?
                     case 0:
                         this.animals.add(new Crab(rand.nextInt(sizewl[0]), rand.nextInt(sizewl[1])));
+                        break;
                     case 1:
                         this.animals.add(new Deer(rand.nextInt(sizewl[0]), rand.nextInt(sizewl[1])));
+                        break;
                     case 2:
                         this.animals.add(new Falcon(rand.nextInt(sizewl[0]), rand.nextInt(sizewl[1])));
+                        break;
                     case 3:
                         this.animals.add(new Hedgehog(rand.nextInt(sizewl[0]), rand.nextInt(sizewl[1])));
+                        break;
                     case 4:
                         this.animals.add(new JellyFish(rand.nextInt(sizewl[0]), rand.nextInt(sizewl[1])));
+                        break;
                     case 5:
                         this.animals.add(new Seagull(rand.nextInt(sizewl[0]), rand.nextInt(sizewl[1])));
+                        break;
                     case 6:
                         this.animals.add(new Snake(rand.nextInt(sizewl[0]), rand.nextInt(sizewl[1])));
+                        break;
                     case 7:
                         this.animals.add(new Turtle(rand.nextInt(sizewl[0]), rand.nextInt(sizewl[1])));
+                        break;
                     case 8:
                         this.animals.add(new Wolf(rand.nextInt(sizewl[0]), rand.nextInt(sizewl[1])));
+                        break;
                 }
             }
             n += animal_numbers[i]; // Next index

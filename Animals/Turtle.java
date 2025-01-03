@@ -1,6 +1,7 @@
 package Animals;
 
 import Resources.TerrainResources;
+import base.Terrain2D;
 
 public class Turtle extends Animal {
 
@@ -8,7 +9,7 @@ public class Turtle extends Animal {
         super(x, y);
         this.specie = species.TURTLE;
 
-        this.prews.add(species.JELLY_FISH);
+        this.preys.add(species.JELLY_FISH);
         this.predators.add(species.FALCON);
         this.predators.add(species.SHARK);
         this.myFood.add(TerrainResources.food.ALGAE);
@@ -21,8 +22,11 @@ public class Turtle extends Animal {
     }
 
     @Override
-    protected void reproduce() {
-        new Turtle(this.x+1, this.y);
-    };
+    public void reproduce() {
+        if (this.ground.contains(Terrain2D.getTerrain(this.x +1, this.y))) {
+            new Turtle(this.x + 1, this.y);
+            super.reproduce();
+        }
+    }
 
 }

@@ -1,13 +1,15 @@
 package Animals;
 
+import base.Terrain2D;
+
 public class Wolf extends Animal {
 
     public Wolf(int x, int y) {
         super(x, y);
         this.specie = species.WOLF;
 
-        this.prews.add(species.DEER);
-        this.prews.add(species.HEDGEHOG);
+        this.preys.add(species.DEER);
+        this.preys.add(species.HEDGEHOG);
         this.ground.add(grounds.FOREST);
         this.ground.add(grounds.PLAIN);
 
@@ -16,8 +18,11 @@ public class Wolf extends Animal {
     }
 
     @Override
-    protected void reproduce() {
-        new Wolf(this.x+1, this.y);
-    };
+    public void reproduce() {
+        if (this.ground.contains(Terrain2D.getTerrain(this.x +1, this.y))) {
+            new Wolf(this.x + 1, this.y);
+            super.reproduce();
+        }
+    }
 
 }

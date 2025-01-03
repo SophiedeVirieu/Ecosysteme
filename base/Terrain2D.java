@@ -1,32 +1,32 @@
 package base;
 
-import Resources.Algae;
-import Resources.Berry;
-import Resources.Fish;
-import Resources.Herb;
+import Resources.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
-import java.util.Random;
 
 public class Terrain2D extends JPanel {
     private static final int[][] heights;
     private final int cellSize = 10; // Taille de chaque "case" du terrain
-    private final List<List<Integer>> list_Fish;
-    private final List<List<Integer>> list_Algae;
-    private final List<List<Integer>> list_Herb;
-    private final List<List<Integer>> list_Berry;
+    public static final List<List<Integer>> list_Fish = new ArrayList<>();
+    public static final List<List<Integer>> list_Algae = new ArrayList<>();
+    public static final List<List<Integer>> list_Herb = new ArrayList<>();
+    public static final List<List<Integer>> list_Berry = new ArrayList<>();
+    public static final Map<TerrainResources.food, List<List<Integer>>> foodToList = new HashMap<>();
 
     public Terrain2D(int width, int height) {
         heights = generateTerrain(width, height);
         smoothTerrain(heights, 5); // Appliquer un lissage sur x itérations
-        list_Fish = new ArrayList<>();
-        list_Algae = new ArrayList<>();
-        list_Herb = new ArrayList<>();
-        list_Berry = new ArrayList<>();
+
+        //association between a list and a type of food
+        foodToList.put(TerrainResources.food.FISH, list_Fish);
+        foodToList.put(TerrainResources.food.ALGAE, list_Algae);
+        foodToList.put(TerrainResources.food.GRASS, list_Herb);
+        foodToList.put(TerrainResources.food.BERRIES, list_Berry);
     }
+
 
     // Génération d'un terrain 2D avec des hauteurs aléatoires
     private int[][] generateTerrain(int width, int height) {
@@ -145,16 +145,16 @@ public class Terrain2D extends JPanel {
     }
 
 
-    public List<List<Integer>> Neighbours(int x, int y, int sense, List<List<Integer>> Ressources) {
-        List<List<Integer>> Sense_Zone = new ArrayList<>();
+    public static List<List<Integer>> Neighbours(int x, int y, int sense, List<List<Integer>> Resources) {
+        List<List<Integer>> SenseZone = new ArrayList<>();
         for (int i = x-sense; i < x+sense+1; i++) {
             for (int j = y-sense; j < y+sense+1; j++) {
-                if (Ressources.contains(List.of(i, j))) {
-                    Sense_Zone.add(List.of(i, j));
+                if (Resources.contains(List.of(i, j))) {
+                    SenseZone.add(List.of(i, j));
                 }
             }
         }
-        return Sense_Zone;
+        return SenseZone;
     }
 
 

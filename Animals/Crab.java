@@ -1,5 +1,6 @@
 package Animals;
 import Resources.TerrainResources;
+import base.Terrain2D;
 
 public class Crab extends Animal {
 
@@ -20,7 +21,10 @@ public class Crab extends Animal {
     }
 
     @Override
-    protected void reproduce() {
-        new Crab(this.x+1, this.y);
-    };
+    public void reproduce() {
+        if (this.ground.contains(Terrain2D.getTerrain(this.x +1, this.y))) {
+            new Crab(this.x +1, this.y);
+            super.reproduce();
+        }
+    }
 }

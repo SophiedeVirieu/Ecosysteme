@@ -1,5 +1,6 @@
 package Animals;
 import Resources.TerrainResources;
+import base.Terrain2D;
 
 public class Deer extends Animal {
 
@@ -19,7 +20,10 @@ public class Deer extends Animal {
     }
 
     @Override
-    protected void reproduce() {
-        new Deer(this.x+1, this.y);
-    };
+    public void reproduce() {
+        if (this.ground.contains(Terrain2D.getTerrain(this.x +1, this.y))) {
+            new Deer(this.x + 1, this.y);
+            super.reproduce();
+        }
+    }
 }
