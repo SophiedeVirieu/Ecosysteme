@@ -13,8 +13,8 @@ public abstract class Animal extends Biomass {
 
     public enum sexes {M, F};
     public int satiety;
-    protected species specie;
-    protected List<species> preys;
+    protected Biomass.species specie;
+    protected List<Biomass.species> preys;
     protected List<TerrainResources.food> myFood;
     protected int voracity;
     protected sexes sex;
@@ -34,7 +34,7 @@ public abstract class Animal extends Biomass {
         if (this.satiety %2 == 0){this.sex = sexes.M;}
         else{this.sex = sexes.F;}
 
-        this.preys = new ArrayList<species>();
+        this.preys = new ArrayList<Biomass.species>();
         this.myFood = new ArrayList<TerrainResources.food>();
         this.detectedFood = new ArrayList<>(Arrays.asList(null, 0));
     }

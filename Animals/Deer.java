@@ -1,6 +1,5 @@
 package Animals;
 import Resources.TerrainResources;
-import base.Terrain2D;
 
 public class Deer extends Animal {
 
