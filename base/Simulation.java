@@ -33,9 +33,6 @@ public class Simulation {
      * - MIGRATE: Represents the decision to move to a new location, possibly for better resources or conditions. </\p>
      */
     public enum Decisions {REPRODUCE, EAT, FLEE, ATTACK, MIGRATE} //Possible behaviors for the animals
-    private int end; // =1 when the simulation is ended, =0 when it is still running
-    public static ArrayList<Animal> animals = new ArrayList<Animal>(); // List of the animals in the simulation.
-    private int[] sizewl; // Size [width, length] of the game board TODO: Is it useful?
 
     /**
      * Flag indicating the end of the simulation. 0 if still running, 1 if the simulation has ended.
@@ -141,7 +138,7 @@ public class Simulation {
         ArrayList<Animal> survivors = new ArrayList<Animal>(); //Is a new array list each turn ?? Normally yes, bc it is a local variable
         for (int i = 0; i < animals.size(); i++) { //Kill related animals
             Animal a = animals.get(i);
-            if (a.satiety > 0) {//TODO : Is the satiety stat really equivalent to hp?
+            if (a.bites < 4) {
                 survivors.add(a);
             }
             else{

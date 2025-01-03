@@ -12,7 +12,7 @@ public abstract class Animal extends Biomass {
     public int sat_max = 10;
 
     public enum sexes {M, F};
-    public int satiety;
+    private int satiety;
     protected Biomass.species specie;
     protected List<Biomass.species> preys;
     protected List<TerrainResources.food> myFood;
