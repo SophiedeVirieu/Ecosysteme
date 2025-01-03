@@ -7,7 +7,7 @@ public class JellyFish extends Animal {
         this.specie = species.JELLY_FISH;
 
         this.predators.add(species.TURTLE);
-        this.myFood.add(TerrainResources.food.FISH);
+        this.myFood.add(Resources.TerrainResources.food.FISH);
         this.ground.add(grounds.WATER);
 
         this.speed = 1;
@@ -16,7 +16,7 @@ public class JellyFish extends Animal {
     }
 
     @Override
-    protected void reproduce() {
+    public void reproduce() {
         new JellyFish(this.x+1, this.y);
     };
 }

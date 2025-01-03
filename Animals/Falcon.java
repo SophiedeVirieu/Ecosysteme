@@ -17,7 +17,7 @@ public class Falcon extends Animal {
     }
 
     @Override
-    protected void reproduce() {
+    public void reproduce() {
         new Falcon(this.x+1, this.y);
     };
 }

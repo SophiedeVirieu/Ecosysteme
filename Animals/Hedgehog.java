@@ -21,7 +21,7 @@ public class Hedgehog extends Animal {
     }
 
     @Override
-    protected void reproduce() {
+    public void reproduce() {
         new Hedgehog(this.x+1, this.y);
     };
 }

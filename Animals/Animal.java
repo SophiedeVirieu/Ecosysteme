@@ -66,7 +66,7 @@ public abstract class Animal extends Biomass {
     }
 
     // to call only if the animal is female
-    public abstract void reproduce();
+    public abstract void reproduce(); //TODO : Caution : the reproduce function shouldn't create new animals without being very careful ! (It will cause bugs)
 
     protected void detect_food(){
         /* Search the nearest food */

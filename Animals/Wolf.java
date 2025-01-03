@@ -16,7 +16,7 @@ public class Wolf extends Animal {
     }
 
     @Override
-    protected void reproduce() {
+    public void reproduce() {
         new Wolf(this.x+1, this.y);
     };
 

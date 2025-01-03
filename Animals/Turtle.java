@@ -21,7 +21,7 @@ public class Turtle extends Animal {
     }
 
     @Override
-    protected void reproduce() {
+    public void reproduce() {
         new Turtle(this.x+1, this.y);
     };
 

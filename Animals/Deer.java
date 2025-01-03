@@ -19,7 +19,7 @@ public class Deer extends Animal {
     }
 
     @Override
-    protected void reproduce() {
+    public void reproduce() {
         new Deer(this.x+1, this.y);
     };
 }

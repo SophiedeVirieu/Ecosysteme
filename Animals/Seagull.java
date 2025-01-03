@@ -23,7 +23,7 @@ public class Seagull extends Animal {
     }
 
     @Override
-    protected void reproduce() {
+    public void reproduce() {
         new Seagull(this.x+1, this.y);
     };
 }

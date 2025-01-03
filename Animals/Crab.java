@@ -20,7 +20,7 @@ public class Crab extends Animal {
     }
 
     @Override
-    protected void reproduce() {
+    public void reproduce() {
         new Crab(this.x+1, this.y);
     };
 }
