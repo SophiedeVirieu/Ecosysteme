@@ -11,6 +11,20 @@ public abstract class TerrainResources extends Biomass {
     protected int TTR;
     protected int x;
     protected int y;
+
+    public void setBites(int bites) {
+        if (bites > 3) {
+            Alive = false;
+        }
+        this.bites = bites;
+    }
+    public void setAlive(boolean alive) {
+        if (alive) {
+            this.bites = 3;
+        }
+        Alive = alive;
+    }
+
     protected boolean Alive; // If the plant as not been eaten yet, it's alive, if not, it's dead
 
     //Constructeur
