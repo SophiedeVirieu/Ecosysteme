@@ -80,7 +80,7 @@ public abstract class Animal extends Biomass {
     }
     /* create an animal next to this */
 
-    protected void detect_food(){
+    protected void detectFood(){
         /* Search the nearest food */
 
         List<List<Integer>> detected = new ArrayList<>(); //the list of coordinates of detected food
@@ -111,7 +111,7 @@ public abstract class Animal extends Biomass {
 
     }
 
-    public void detect_predator(){
+    public void detectPredator(){
 
         List<List<Integer>> detected = new ArrayList<>();
         int radius = 7;
@@ -182,11 +182,14 @@ public abstract class Animal extends Biomass {
             }
         }
 
+        this.detectPredator();
         if (this.toFlee.getFirst() != null){
             return Simulation.Decisions.FLEE;
         }
+
+        this.detectFood();
         // TODO : meteo
-        else if (this.detectedFood.get(0) == null){
+        if (this.detectedFood.get(0) == null){
             return Simulation.Decisions.MIGRATE;
         }
         return Simulation.Decisions.ATTACK;
